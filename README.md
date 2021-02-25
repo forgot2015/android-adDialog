@@ -1,3 +1,15 @@
+fork 自 https://github.com/yipianfengye/android-adDialog
+主要修改：
+1.修复 AnimSpring 内存泄露问题
+https://github.com/yipianfengye/android-adDialog/issues/17
+
+
+
+
+
+
+------------------------------------------------------------------------
+以下是 fork 的原项目的说明
 # android-adDialog
 
 **更新日志**
