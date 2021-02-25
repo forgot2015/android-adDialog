@@ -75,6 +75,7 @@ public class AnimDialogUtils {
 
     /**
      * 开始执行弹窗的展示动画
+     *
      * @param animType
      */
     public void show(int animType, double bounciness, double speed) {
@@ -110,12 +111,15 @@ public class AnimDialogUtils {
      * 开始执行关闭动画的操作
      */
     public void dismiss(int animType) {
-        AnimSpring.getInstance().stopAnim(animType, this);
+        AnimSpring animSpring = AnimSpring.getInstance();
+        animSpring.stopAnim(animType, this);
+        animSpring.release();
     }
 
 
     /**
      * 设置背景组件颜色
+     *
      * @param color
      * @return
      */
@@ -128,6 +132,7 @@ public class AnimDialogUtils {
 
     /**
      * 设置弹窗关闭按钮是否可见
+     *
      * @param dialogCloseable
      * @return
      */
@@ -145,6 +150,7 @@ public class AnimDialogUtils {
 
     /**
      * 设置背景是否透明
+     *
      * @param animBackViewTransparent
      * @return
      */
@@ -156,6 +162,7 @@ public class AnimDialogUtils {
 
     /**
      * 设置弹窗背景是否覆盖全屏幕
+     *
      * @param overScreen
      */
     public AnimDialogUtils setOverScreen(boolean overScreen) {

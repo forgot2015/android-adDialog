@@ -1,4 +1,4 @@
-package com.uuch.adlibrary;
+package com.uuch.android_addialog;
 
 import android.app.Application;
 import android.util.DisplayMetrics;
