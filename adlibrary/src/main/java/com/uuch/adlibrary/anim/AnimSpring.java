@@ -148,4 +148,9 @@ public class AnimSpring {
             animDialogUtils.setShowing(false);
         }
     }
+
+    public void release() {
+        springSystem = null;
+        animSpring = null;
+    }
 }

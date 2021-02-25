@@ -1,7 +1,6 @@
 package com.uuch.android_addialog;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.uuch.adlibrary.AdConstant;
 import com.uuch.adlibrary.bean.AdInfo;
@@ -52,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
     private void initData() {
         advList = new ArrayList<>();
         AdInfo adInfo = new AdInfo();
-        adInfo.setActivityImg("https://raw.githubusercontent.com/yipianfengye/android-adDialog/master/images/testImage1.png");
+        adInfo.setActivityImg("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3464325506,3035174855&fm=11&gp=0.jpg");
         advList.add(adInfo);
 
         adInfo = new AdInfo();
-        adInfo.setActivityImg("https://raw.githubusercontent.com/yipianfengye/android-adDialog/master/images/testImage2.png");
+        adInfo.setActivityImg("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2406998826,2718978271&fm=11&gp=0.jpg");
         advList.add(adInfo);
     }
 
@@ -77,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
         mList.add(new DataBean(AdConstant.ANIM_DOWNRIGHT_TO_CENTER, "从右下弹出广告弹窗"));
         SpinnerAdapter spinnerAdapter = new SpinnerAdapter(mList, this);
         spinner.setAdapter(spinnerAdapter);
-
 
         editText = (EditText) findViewById(R.id.edittext);
         button1 = (Button) findViewById(R.id.button1);
@@ -205,12 +205,13 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdManager adManager = new AdManager(MainActivity.this, advList);
+                final AdManager adManager = new AdManager(MainActivity.this, advList);
 
                 adManager.setOnImageClickListener(new AdManager.OnImageClickListener() {
                     @Override
                     public void onImageClick(View view, AdInfo advInfo) {
                         Toast.makeText(MainActivity.this, "您点击了ViewPagerItem...", Toast.LENGTH_SHORT).show();
+                        adManager.dismissAdDialog();
                     }
                 })
                 .setBackViewColor(Color.parseColor("#AA333333"))
@@ -259,4 +260,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+    }
 }

@@ -1,13 +1,43 @@
 fork 自 https://github.com/yipianfengye/android-adDialog
+原作者是 https://github.com/yipianfengye
+
+因原作者不维护项目了,个人使用到了该库,顺便改一下
 主要修改：
-1.修复 AnimSpring 内存泄露问题
-https://github.com/yipianfengye/android-adDialog/issues/17
+1. 修复 AnimSpring 内存泄露问题
+感谢 https://github.com/yipianfengye/android-adDialog/issues/17
+2. 修改库中的 AndroidManifest, 并将 LApplication 从库中抽离,放到 app 中
+3. 迁移至 AndroidX
 
+使用本库的方法:
+1. 下载,然后将 adlibrary 库导入到你的项目中
+2. 在项目 app 的 build.gradle 加入 implementation project(':adlibrary')
+3. 参考本 demo, 在 Application 中加入初始化代码
+```
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        initDisplayOpinion();
+        Fresco.initialize(this);
+    }
 
+    private void initDisplayOpinion() {
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        DisplayUtil.density = dm.density;
+        DisplayUtil.densityDPI = dm.densityDpi;
+        DisplayUtil.screenWidthPx = dm.widthPixels;
+        DisplayUtil.screenhightPx = dm.heightPixels;
+        DisplayUtil.screenWidthDip = DisplayUtil.px2dip(getApplicationContext(), dm.widthPixels);
+        DisplayUtil.screenHightDip = DisplayUtil.px2dip(getApplicationContext(), dm.heightPixels);
+    }
+```
+4. 其他业务代码就看原项目说明
 
+PS:修改广告图片弹出延迟时间的方法
+在 AdManager 的 showAdDialog()方法底部修改弹出时间即可,当前设置是1000
 
-
-
+------------------------------------------------------------------------
+更多使用方法请看原作者项目的说明文档
+https://github.com/yipianfengye/android-adDialog
 ------------------------------------------------------------------------
 以下是 fork 的原项目的说明
 # android-adDialog
